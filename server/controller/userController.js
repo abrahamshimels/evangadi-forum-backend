@@ -95,9 +95,18 @@ async function login(req, res) {
 
 async function checkUser(req, res) {
   const user = req.user;
+  console.log(
+    `[checkUser] ${req.method} ${req.originalUrl} -> req.user present: ${Boolean(user)}`
+  );
+
   if (!user) {
+    console.warn(`[checkUser] ${req.method} ${req.originalUrl} -> Unauthorized`);
     return res.status(401).json({ msg: "Unauthorized" });
   }
+
+  console.log(
+    `[checkUser] ${req.method} ${req.originalUrl} -> Authenticated userid=${user.userid}, username=${user.username}`
+  );
   return res.status(200).json({ user });
 }
 

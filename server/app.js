@@ -45,7 +45,10 @@ async function start() {
       console.log(`🚀 Server is running at http://localhost:${port}`);
     });
   } catch (error) {
-    console.error("❌ Startup failed:", error.message);
+    console.error(
+      "❌ Startup failed:",
+      error?.code || error?.message || String(error)
+    );
     process.exit(1);
   }
 }
